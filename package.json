@@ -1,15 +1,12 @@
 {
-  "name": "docker-10.1",
+  "name": "program-10",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "jest": "^29.7.0"
-  }
+  "description": ""
 }

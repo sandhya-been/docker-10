@@ -1,58 +1,53 @@
 const http = require('http');
 
-const PORT = process.env.PORT || 3000;
-
-const htmlContent = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Docker CI/CD App</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #eef4f7;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .container {
-      background: #fff;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    h1 {
-      color: #007acc;
-      margin-bottom: 10px;
-    }
-    p {
-      color: #333;
-      font-size: 16px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Hello from Docker CI/CD!</h1>
-    <p>Your Node.js app is running inside a Docker container — with Jenkins automation 🚀</p>
-  </div>
-</body>
-</html>`;
-
 // Create HTTP server
-const server = http.createServer((req, res) => {
+http.createServer((req, res) => {
+  // Set content type to HTML
   res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end(htmlContent);
+
+  // HTML content with student info
+  res.end(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Docker CI/CD Server - Student Lab</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f9f9f9;
+          }
+          h1 { color: #333; }
+          p { color: #555; }
+          .student-info {
+            text-align: left;
+            display: inline-block;
+            margin-top: 30px;
+            background: #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+          }
+          .student-info h2 {
+            margin-top: 0;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Hello from Docker CI/CD!</h1>
+        <p>This server is running using Node.js</p>
+
+        <div class="student-info">
+          <h2>Student Information</h2>
+          <p><strong>Name:</strong> Kavi Priya M</p>
+          <p><strong>Roll No.:</strong> 016</p>
+          <p><strong>Course:</strong> B.Sc Computer Science</p>
+          <p><strong>Subject:</strong> Web Application Development</p>
+          <p><strong>Experiment:</strong> Simple HTTP Server with HTML</p>
+        </div>
+      </body>
+    </html>
+  `);
+}).listen(3000, () => {
+  console.log('Server running at http://localhost:3000');
 });
-
-// Start the server only when app.js is run directly (not during tests)
-if (require.main === module) {
-  server.listen(PORT, () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
-  });
-}
-
-module.exports = server;
